@@ -1,5 +1,6 @@
 #ifndef RBTREE_H
 #define RBTREE_H
+
 typedef enum {RED, BLACK} Color;
 typedef struct sRBNode{
   struct sRBNode *parent;
@@ -22,4 +23,9 @@ void rbInsert(RBTree *t, RBNode* z);
 void leftRotate(RBTree *t, RBNode* x);
 
 void rightRotate(RBTree *t, RBNode* y);
+
+void rbPrint(RBTree* t);
+
+void recurRBPrint(RBNode* z);
+
 #endif
