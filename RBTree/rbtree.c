@@ -1,7 +1,5 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
-#include <wchar.h>
 #include "rbtree.h"
 
 RBNode* createRBNode(int key){
@@ -48,44 +46,4 @@ void rbInsert(RBTree *t, RBNode* z){
       y->right = z;
   }
   //rbInsertFixUp(t, z);
-}
-
-void leftRotate(RBTree* t, RBNode* x){
-  assert(x != NULL);
-  RBNode* y = x->right;
-  RBNode* B = y->left;
-  RBNode* z = x->parent;
-  
-  x->right = B;
-  if(B) B->parent = x;
-  if(z == NULL) t->root = y;
-  else
-    z = y;
-
-  y->left = x;
-}
-
-void rightRotate(RBTree* t, RBNode* y){
-  assert(y != NULL);
-  assert(y->left != NULL);
-  RBNode* x = y->left;
-  RBNode* B = x->right;
-  RBNode* z = y->parent;
-  if(z == NULL) x = t->root;
-  else
-    x = z;
-  x->right = y;
-  y->parent = x;
-  y->left = B;
-}
-void recurRBPrint(RBNode* z){
-  if(z == NULL) return;
-  printf("%d\n",z->key);
-  recurRBPrint(z->left);
-  recurRBPrint(z->right);
-}
-void rbPrint(RBTree* t){
-  RBNode* x = t->root;
-  //RBNode* y = NULL;
-  recurRBPrint(x);
 }
